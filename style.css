@@ -1,0 +1,66 @@
+* {
+    font-family: 'Chelsea Market', cursive, sans-serif;
+}
+
+body {
+    /*background-color: #ff9;*/
+    background-image: url("macro-light-wildflowers-makro.jpg");
+    background-size: 100%;
+}
+
+.container {
+    display: flex;
+    margin: 20px 500px 0 500px;
+}
+
+.grid {
+    width: 200px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ccffcc;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.grid div {
+    height: 20px;
+    width: 20px;
+    border: 2px black;
+}
+
+.tetromino {
+    background-color: #6699ff;
+}
+
+.mini-grid {
+    margin-left: 50px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ccffcc;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.mini-grid div {
+    width: 20px;
+    height: 20px;
+}
+
+.score {
+    margin: 50px 500px 0 500px;
+}
+
+#start-button {
+    font-family: 'Chelsea Market', cursive, sans-serif;
+    background: radial-gradient(ellipse at center, rgba(153,255,204,1) 0%, rgba(204,255,204,1) 100%);
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: black;
+}
