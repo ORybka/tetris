@@ -3,20 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css"></link> 
     <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <title>Tetris Game</title>
   </head>
   
   <body>
-    <div class="score">
-      <h3>Score:<span id="score"> 0</span></h3>
-      <button id="start-button">Start/Pause</button>
-    </div>
-
-    <div class="container">
-      <div class="grid">
+    <h1>Tetris</h1>
+    <div class="game-container">
+      <div class="main-container">
         <div></div>
         <div></div>
         <div></div>
@@ -229,26 +226,64 @@
         <div class="taken"></div>
       </div>
 
+      <div class="left-flex">
+        <div class="info">
+          <h3>Score:<span id="score"> 0</span></h3>
+          <h3>Level:<span id="level"> 1</span></h3>
+        </div>
+        <div class="mini-container">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
 
-      <div class="mini-grid">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+        <button id="start-button">Start/Pause</button>
       </div>
-  </div>
+    </div> 
 
+    <footer>
+      <div id="footer-container">
+        <a href="#" target="_blank" rel="noopener noreferrer"><h3>Homepage</h3></a>
+        <div id="footer-icons">
+          <a
+            href="https://www.linkedin.com/in/olha-mykolaichuk/"
+            class="fa fa-linkedin"
+            target="_blank"
+          ></a>
+          <a
+            href="https://github.com/OlgaMyk"
+            class="fa fa-github"
+            target="_blank"
+          ></a>
+          <a href="mailto:olha.mykolaichuk@gmail.com">
+            <i class="material-icons download mail" target="_blank">mail</i></a
+          >
+          <a
+            href="https://codepen.io/Olga_Mykola"
+            class="fa fa-codepen"
+            target="_blank"
+          ></a>
+        </div>
+        <div id="copyright">
+          <a href="#" target="_blank" rel="noopener noreferrer"><span class="copyright-text">Olha Mykolaichuk</span></a>
+          <i class="material-icons download copyright-text">copyright</i>
+          <span class="copyright-text">2020</span>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js"></script>
   </body>
 </html>

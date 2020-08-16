@@ -1,66 +1,191 @@
-* {
-    font-family: 'Chelsea Market', cursive, sans-serif;
+html {
+  font-family: 'Chelsea Market', cursive, sans-serif;
+  font-size: 62.5%;
+}
+
+html a {
+  text-decoration: none;
 }
 
 body {
-    /*background-color: #ff9;*/
-    background-image: url("macro-light-wildflowers-makro.jpg");
-    background-size: 100%;
+  background-image: url("background.jpg");
+  background-size: cover;
+  margin: 0;
 }
 
-.container {
-    display: flex;
-    margin: 20px 500px 0 500px;
+body h1 {
+  font-size: 5rem;
+  text-align: center;
+  margin: 1rem auto;
 }
 
-.grid {
-    width: 200px;
-    height: 400px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #ccffcc;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
+.game-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.grid div {
-    height: 20px;
-    width: 20px;
-    border: 2px black;
+.left-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.tetromino {
-    background-color: #6699ff;
+.main-container {
+  min-width: 20rem;
+  width: 20rem;
+  min-height: 40rem;
+  height: 40rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: #ccffcc;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 0.2rem;
+  border-color: #000;
 }
 
-.mini-grid {
-    margin-left: 50px;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #ccffcc;
-    border-radius: 5px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: black;
+.main-container div {
+  height: 2rem;
+  width: 2rem;
+  border: 0.2rem #000;
 }
 
-.mini-grid div {
-    width: 20px;
-    height: 20px;
+.mini-container {
+  width: 8rem;
+  height: 8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin: 1rem 0 0 5rem;
+  background-color: #ccffcc;
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #000;
 }
 
-.score {
-    margin: 50px 500px 0 500px;
+.mini-container div {
+  width: 2rem;
+  height: 2rem;
+}
+
+.info {
+  font-size: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.info h3 {
+  margin: 0 auto;
+  margin-left: 5rem;
 }
 
 #start-button {
-    font-family: 'Chelsea Market', cursive, sans-serif;
-    background: radial-gradient(ellipse at center, rgba(153,255,204,1) 0%, rgba(204,255,204,1) 100%);
-    border-radius: 5px;
-    border-width: 2px;
-    border-color: black;
+  font-family: 'Chelsea Market', cursive, sans-serif;
+  font-size: 2rem;
+  padding: 1rem 0.5rem;
+  background: radial-gradient(ellipse at center, #99ffcc 0%, #ccffcc 100%);
+  margin-top: 15rem;
+  margin-left: 3rem;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #000;
 }
+
+#start-button:hover {
+  background: radial-gradient(ellipse at center, #8ac379 0%, #ccffcc 100%);
+  -webkit-box-shadow: 0px 6px 15px #000;
+          box-shadow: 0px 6px 15px #000;
+}
+
+footer {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 12rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+footer #footer-container {
+  padding-top: 1rem;
+}
+
+footer #footer-container h3 {
+  display: block;
+  color: #ccffcc;
+  font-size: 2rem;
+  letter-spacing: 0.5rem;
+  width: 30rem;
+  text-align: center;
+  margin: 0.5rem auto 0;
+}
+
+footer #footer-container #footer-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20%;
+  margin: 0 auto;
+  padding-top: 1rem;
+}
+
+footer #footer-container #footer-icons .fa,
+footer #footer-container #footer-icons .mail {
+  padding: 0.5rem;
+  font-size: 2rem;
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  background: none;
+  border: 0.2rem #000 solid;
+  border-radius: 50%;
+  color: #000;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+footer #footer-container #footer-icons .fa:hover,
+footer #footer-container #footer-icons .mail:hover {
+  background-color: #ccffcc;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  border: 0.2rem #ccffcc solid;
+  -webkit-box-shadow: 0px 6px 15px #000;
+          box-shadow: 0px 6px 15px #000;
+}
+
+footer #footer-container #copyright {
+  display: block;
+  width: 20%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+footer #footer-container #copyright .copyright-text {
+  color: #ccffcc;
+  font-size: 1.5rem;
+  margin: 1.5rem auto 0;
+}
+/*# sourceMappingURL=style.css.map */

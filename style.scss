@@ -1,0 +1,168 @@
+$colors: (
+  main: #ccffcc,
+  text: #000,
+  text2: #fff,
+);
+
+@function color($colors-name) {
+  @return map-get($colors, $colors-name);
+}
+
+html {
+  font-family: 'Chelsea Market', cursive, sans-serif;
+  font-size: 62.5%;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+body {
+  background-image: url("background.jpg");
+  background-size: cover;
+  margin: 0;
+
+  h1 {
+    font-size: 5rem;
+    text-align: center;
+    margin: 1rem auto;
+  }
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+}
+
+.left-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  min-width: 20rem;
+  width: 20rem;
+  min-height: 40rem;
+  height: 40rem;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: color(main);
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: 0.2rem;
+  border-color: color(text);
+
+  div {
+    height: 2rem;
+    width: 2rem;
+    border: 0.2rem color(text);
+  }
+}
+
+.mini-container {
+  width: 8rem;
+  height: 8rem;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem 0 0 5rem;
+  background-color: color(main);
+  border-radius: 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: color(text);
+  div {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.info {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  h3 {
+    margin: 0 auto;
+    margin-left: 5rem;
+  }
+}
+
+#start-button {
+    font-family: 'Chelsea Market', cursive, sans-serif;
+    font-size: 2rem;
+    padding: 1rem 0.5rem;
+    background: radial-gradient(ellipse at center, rgba(153,255,204,1) 0%, rgba(204,255,204,1) 100%);
+    margin-top: 15rem;
+    margin-left: 3rem;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: color(text);
+
+    &:hover {
+      background: radial-gradient(ellipse at center, rgba(138,195,121,1) 0%, rgba(204,255,204,1) 100%);
+      box-shadow: 0px 6px 15px color(text);
+    }
+}
+
+footer {
+  background-color: rgba(0,0,0,0.5);
+  height: 12rem;
+  width: 100%;
+  margin-top: 2rem;
+
+  #footer-container {
+    padding-top: 1rem;
+
+    h3 {
+      display: block;
+      color: color(main);
+      font-size: 2rem;
+      letter-spacing: 0.5rem;
+      width: 30rem;
+      text-align: center;
+      margin: 0.5rem auto 0;
+    }
+
+    #footer-icons {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 20%;
+      margin: 0 auto;
+      padding-top: 1rem;
+
+      .fa,
+      .mail {
+        padding: 0.5rem;
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        text-align: center;
+        background: none;
+        border: 0.2rem color(text) solid;
+        border-radius: 50%;
+        color: color(text);
+        transition: all 0.5s;
+
+        &:hover {
+          background-color: color(main);
+          transition: all 0.5s;
+          border: 0.2rem color(main) solid;
+          box-shadow: 0px 6px 15px color(text);
+        }
+      }
+    }
+
+    #copyright {
+      display: block;
+      width: 20%;
+      margin: 0 auto;
+      text-align: center;
+
+      .copyright-text {
+        color: color(main);
+        font-size: 1.5rem;
+        margin: 1.5rem auto 0;
+      }
+    }
+  }
+}
