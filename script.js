@@ -5,11 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const levelDisplay = document.querySelector("#level");
   const startBtn = document.querySelector("#start-button");
   const width = 10;
+  let startCount = 0;
   let nextRandom = 0;
   let timerId;
-  let time = 1200;
+  let time = 1000;
   let score = 0;
   let level = 1;
+  let buttonState = 0; // 0 = play , 1 = new game
   const colors = [
     "#660033",
     "#990099",
@@ -91,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function draw() {
     current.forEach((index) => {
       squares[currentPosition + index].classList.add("tetromino");
-      squares[currentPosition + index].style.backgroundColor = colors[random];
+      squares[currentPosition + index].style.background = colors[random];
     });
   }
 
@@ -234,16 +236,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //add functionality to the button
   startBtn.addEventListener("click", () => {
-    if (timerId) {
-      clearInterval(timerId);
-      timerId = null;
+    console.log(buttonState);
+    if (buttonState === 0) {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+        startCount++;
+        startBtn.style.background = "radial-gradient(ellipse at center, rgba(73,155,234,1) 0%, rgba(57,172,172,1) 100%)";
+        console.log(startCount);
+        } else {
+          draw();
+          timerId = setInterval(moveDown, time);
+          startBtn.style.background = "";
+          if (startCount < 1) {
+          nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+          displayShape();
+        }
+      }
     } else {
-      draw();
-      timerId = setInterval(moveDown, time);
-      nextRandom = Math.floor(Math.random() * theTetrominoes.length);
-      displayShape();
+      clearBoard();
     }
   });
+
 
   //add score and level
   function addScore() {
@@ -264,18 +278,16 @@ document.addEventListener("DOMContentLoaded", () => {
         score += 10;
         scoreDisplay.innerHTML = score;
         if (score % 20 === 0) {
-          level++;
+          level++
           levelDisplay.innerHTML = level;
-        }
-        if (level % 2 === 0) {
-          time = time - 100;
-          console.log(level, time);
+          time -= 100;
           timerId = setInterval(moveDown, time);
+          console.log(level, time);
         }
         row.forEach((index) => {
           squares[index].classList.remove("taken");
           squares[index].classList.remove("tetromino");
-          squares[index].style.backgroundColor = "";
+          squares[index].style.background = "";
         });
         const squaresRemoved = squares.splice(i, width);
         squares = squaresRemoved.concat(squares);
@@ -286,14 +298,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //game over
   function gameOver() {
-    if (
-      current.some((index) =>
-        squares[currentPosition + index].classList.contains("taken")
-      )
-    ) {
-      scoreDisplay.innerHTML = " end";
+    if (current.some((index) =>squares[currentPosition + index].classList.contains("taken"))) 
+    {
+      scoreDisplay.innerHTML = " Game over";
       clearInterval(timerId);
-      document.removeEventListener("keydown", keyControl, false);
+      document.removeEventListener("keydown", control, false);
+      button = "New Game";
+      startBtn.innerHTML = button;
+      startBtn.style.background = "radial-gradient(ellipse at center, rgba(230,0,54,1) 0%, rgba(189,0,44,1) 44%, rgba(143,0,33,1) 100%)";
+      buttonState = 1;
     }
+  }
+
+
+  function clearBoard() {
+    for (let i = 0; i < 200; i++) {
+      squares[i].classList.remove("tetramino", "taken");
+      squares[i].style.background = "";
+    }
+    clearInterval(timerId);
+    time = 1000;
+    timerId = setInterval(moveDown, time);
+    score = 0;
+    scoreDisplay.innerHTML = score;
+    level = 1;
+    levelDisplay.innerHTML = level;
+    startCount = 0; 
+    button = "Start/Pause";
+    startBtn.innerHTML = button;
+    startBtn.style.background = "";
+    buttonState = 0;
+    document.addEventListener("keydown", control, false);
+    draw();
+    nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+    displayShape();
   }
 });

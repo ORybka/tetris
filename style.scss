@@ -11,6 +11,7 @@ $colors: (
 html {
   font-family: 'Chelsea Market', cursive, sans-serif;
   font-size: 62.5%;
+  height: 100%;
 
   a {
     text-decoration: none;
@@ -18,9 +19,12 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background-image: url("background.jpg");
   background-size: cover;
   margin: 0;
+  height: 100%;
 
   h1 {
     font-size: 5rem;
@@ -30,6 +34,7 @@ body {
 }
 
 .game-container {
+  flex: 1 0 auto;
   display: flex;
   justify-content: center;
 }
@@ -96,6 +101,7 @@ body {
     border-radius: 5px;
     border-width: 2px;
     border-color: color(text);
+    outline: none;
 
     &:hover {
       background: radial-gradient(ellipse at center, rgba(138,195,121,1) 0%, rgba(204,255,204,1) 100%);
@@ -105,9 +111,10 @@ body {
 
 footer {
   background-color: rgba(0,0,0,0.5);
-  height: 12rem;
+  height: 20vh;
   width: 100%;
   margin-top: 2rem;
+  flex-shrink: 0;
 
   #footer-container {
     padding-top: 1rem;
@@ -166,3 +173,10 @@ footer {
     }
   }
 }
+
+// @media screen and (max-width: 600px) {
+//   .topnav a {
+//     float: none;
+//     width: 100%;
+//   }
+// }

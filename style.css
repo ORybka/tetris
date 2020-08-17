@@ -1,6 +1,7 @@
 html {
   font-family: 'Chelsea Market', cursive, sans-serif;
   font-size: 62.5%;
+  height: 100%;
 }
 
 html a {
@@ -8,9 +9,17 @@ html a {
 }
 
 body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background-image: url("background.jpg");
   background-size: cover;
   margin: 0;
+  height: 100%;
 }
 
 body h1 {
@@ -20,6 +29,9 @@ body h1 {
 }
 
 .game-container {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 auto;
+          flex: 1 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -108,6 +120,7 @@ body h1 {
   border-radius: 5px;
   border-width: 2px;
   border-color: #000;
+  outline: none;
 }
 
 #start-button:hover {
@@ -118,9 +131,11 @@ body h1 {
 
 footer {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 12rem;
+  height: 20vh;
   width: 100%;
   margin-top: 2rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
 
 footer #footer-container {
