@@ -110,11 +110,12 @@ body h1 {
   margin-left: 5rem;
 }
 
+/*********BUTTONS*********/
 #start-button {
   font-family: 'Chelsea Market', cursive, sans-serif;
+  background: radial-gradient(ellipse at center, #99ffcc 0%, #ccffcc 100%);
   font-size: 2rem;
   padding: 1rem 0.5rem;
-  background: radial-gradient(ellipse at center, #99ffcc 0%, #ccffcc 100%);
   margin-top: 15rem;
   margin-left: 3rem;
   border-radius: 5px;
@@ -129,6 +130,80 @@ body h1 {
           box-shadow: 0px 6px 15px #000;
 }
 
+.grid-button {
+  display: -ms-grid;
+  display: grid;
+  display: none;
+  margin-top: 2rem;
+  margin-left: 3rem;
+}
+
+.grid-button .move-btns {
+  font-size: 3rem;
+  background: radial-gradient(ellipse at center, #99ffcc 0%, #ccffcc 100%);
+  height: 4rem;
+  width: 4rem;
+  padding: 0.3rem;
+  margin: 0.5rem auto;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #000;
+  outline: none;
+}
+
+.grid-button .move-btns:hover {
+  background: radial-gradient(ellipse at center, #8ac379 0%, #ccffcc 100%);
+  -webkit-box-shadow: 0px 6px 15px #000;
+          box-shadow: 0px 6px 15px #000;
+}
+
+.grid-button #left-button {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-column: 1 / 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+.grid-button #rotate-button {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+.grid-button #right-button {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3 / 4;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+}
+
+.grid-button #down-button {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1 / 4;
+  -ms-grid-row: 2;
+  -ms-grid-row-span: 1;
+  grid-row: 2 / 3;
+}
+
+@media (max-width: 767.98px) {
+  #start-button {
+    margin-top: 7rem;
+  }
+  .grid-button {
+    display: -ms-grid;
+    display: grid;
+  }
+}
+
+/*********FOOTER*********/
 footer {
   background-color: rgba(0, 0, 0, 0.5);
   height: 20vh;

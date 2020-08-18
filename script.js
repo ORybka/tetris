@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.querySelector("#score");
   const levelDisplay = document.querySelector("#level");
   const startBtn = document.querySelector("#start-button");
+  const leftBtn = document.querySelector("#left-button");
+  const rotateBtn = document.querySelector("#rotate-button");
+  const rightBtn = document.querySelector("#right-button");
+  const downBtn = document.querySelector("#down-button");
   const width = 10;
   let startCount = 0;
   let nextRandom = 0;
@@ -119,6 +123,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
   document.addEventListener("keydown", control, false);
+
+  leftBtn.addEventListener("click", moveLeft);
+  rotateBtn.addEventListener("click", rotate);
+  rightBtn.addEventListener("click", moveRight);
+  downBtn.addEventListener("click", moveDown);
 
   //move down function
   function moveDown() {
