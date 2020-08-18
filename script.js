@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const grid = document.querySelector(".main-container");
+  const container = document.querySelector(".main-container");
   let squares = Array.from(document.querySelectorAll(".main-container div"));
   const scoreDisplay = document.querySelector("#score");
   const levelDisplay = document.querySelector("#level");
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let time = 1000;
   let score = 0;
   let level = 1;
+  let button = "Start/Pause";
   let buttonState = 0; // 0 = play , 1 = new game
   const colors = [
     "#660033",
@@ -117,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       moveDown();
     }
   }
-  document.addEventListener("keyup", control);
+  document.addEventListener("keydown", control, false);
 
   //move down function
   function moveDown() {
@@ -222,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //display the shape in the mini-container display
   function displayShape() {
-    //remove any trace of a tetromino from the entire grid
+    //remove any trace of a tetromino from the entire container
     displaySquares.forEach((squares) => {
       squares.classList.remove("tetromino");
       squares.style.backgroundColor = "";
@@ -234,16 +235,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  //add functionality to the button
   startBtn.addEventListener("click", () => {
-    console.log(buttonState);
     if (buttonState === 0) {
       if (timerId) {
         clearInterval(timerId);
         timerId = null;
         startCount++;
         startBtn.style.background = "radial-gradient(ellipse at center, rgba(73,155,234,1) 0%, rgba(57,172,172,1) 100%)";
-        console.log(startCount);
         } else {
           draw();
           timerId = setInterval(moveDown, time);
@@ -277,12 +275,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (row.every((index) => squares[index].classList.contains("taken"))) {
         score += 10;
         scoreDisplay.innerHTML = score;
-        if (score % 20 === 0) {
+        if (score % 50 === 0) {
           level++
           levelDisplay.innerHTML = level;
           time -= 100;
-          timerId = setInterval(moveDown, time);
-          console.log(level, time);
         }
         row.forEach((index) => {
           squares[index].classList.remove("taken");
@@ -291,17 +287,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         const squaresRemoved = squares.splice(i, width);
         squares = squaresRemoved.concat(squares);
-        squares.forEach((cell) => grid.appendChild(cell));
+        squares.forEach((cell) => container.appendChild(cell));
       }
     }
+    clearInterval(timerId);
+    timerId= setInterval(moveDown, time);
   }
 
   //game over
   function gameOver() {
     if (current.some((index) =>squares[currentPosition + index].classList.contains("taken"))) 
     {
-      scoreDisplay.innerHTML = " Game over";
+      scoreDisplay.innerHTML = score + " / Game over";
       clearInterval(timerId);
+      timerId = null;
       document.removeEventListener("keydown", control, false);
       button = "New Game";
       startBtn.innerHTML = button;
@@ -310,15 +309,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   function clearBoard() {
     for (let i = 0; i < 200; i++) {
       squares[i].classList.remove("tetramino", "taken");
       squares[i].style.background = "";
     }
-    clearInterval(timerId);
-    time = 1000;
-    timerId = setInterval(moveDown, time);
     score = 0;
     scoreDisplay.innerHTML = score;
     level = 1;
@@ -332,5 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
     draw();
     nextRandom = Math.floor(Math.random() * theTetrominoes.length);
     displayShape();
+    time = 1000;
+    timerId = setInterval(moveDown, time);
   }
 });
