@@ -12,6 +12,13 @@
   
   <body>
     <h1>Tetris</h1>
+    <div id="overlay">
+      <div id="popup">
+        <h2>How to play?</h2>
+        <p>Use <strong>arrow keys</strong> in order to move and rotate the tetrominoes.</p>
+        <button id="close-button">OK</button>
+      </div>
+    </div>
     <div class="game-container">
       <div class="main-container">
         <div></div>
@@ -250,7 +257,7 @@
           <div></div>
         </div>
 
-        <button id="start-button">Start/Pause</button>
+        <button id="start-button">Start</button>
         <div class="grid-button">
           <button class="move-btns" id="left-button">
             <span class="material-icons">

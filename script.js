@@ -4,11 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const scoreDisplay = document.querySelector("#score");
   const levelDisplay = document.querySelector("#level");
   const startBtn = document.querySelector("#start-button");
+  const closeBtn = document.querySelector("#close-button");
   const leftBtn = document.querySelector("#left-button");
   const rotateBtn = document.querySelector("#rotate-button");
   const rightBtn = document.querySelector("#right-button");
   const downBtn = document.querySelector("#down-button");
   const width = 10;
+  let startGame = 0;
   let startCount = 0;
   let nextRandom = 0;
   let timerId;
@@ -27,26 +29,37 @@ document.addEventListener("DOMContentLoaded", () => {
     "#8957c7",
   ];
 
+  //Popup
+  if (window.matchMedia("(min-width: 767.98px)").matches) {
+    setTimeout("document.querySelector('#overlay').style.display='block'", 1000);
+  };
+
+  function closePopup() {
+    document.querySelector('#overlay').style.display='none';
+  };
+
+  closeBtn.addEventListener("click", closePopup);
+
   //Tetrominoes
-  const lTetromino = [
-    [1, width + 1, width * 2 + 1, 2],
+  const jTetromino = [
+    [1, width + 1, width * 2, width * 2 + 1],
+    [0, width, width + 1, width + 2],
+    [1, 2, width + 1, width * 2 + 1],
     [width, width + 1, width + 2, width * 2 + 2],
-    [1, width + 1, width * 2 + 1, width * 2],
-    [width, width * 2, width * 2 + 1, width * 2 + 2],
   ];
 
-  const zTetromino = [
+  const sTetromino = [
     [0, width, width + 1, width * 2 + 1],
-    [width + 1, width + 2, width * 2, width * 2 + 1],
+    [1, 2, width, width + 1],
     [0, width, width + 1, width * 2 + 1],
-    [width + 1, width + 2, width * 2, width * 2 + 1],
+    [1, 2, width, width + 1],
   ];
 
   const tTetromino = [
-    [1, width, width + 1, width + 2],
-    [1, width + 1, width + 2, width * 2 + 1],
     [width, width + 1, width + 2, width * 2 + 1],
     [1, width, width + 1, width * 2 + 1],
+    [1, width, width + 1, width + 2],
+    [1, width + 1, width + 2, width * 2 + 1],
   ];
 
   const oTetromino = [
@@ -63,28 +76,28 @@ document.addEventListener("DOMContentLoaded", () => {
     [width, width + 1, width + 2, width + 3],
   ];
 
-  const kTetromino = [
+  const lTetromino = [
     [0, 1, width + 1, width * 2 + 1],
-    [width + 2, width * 2, width * 2 + 1, width * 2 + 2],
+    [2, width, width + 1, width + 2],
     [1, width + 1, width * 2 + 1, width * 2 + 2],
     [width, width + 1, width + 2, width * 2],
   ];
 
-  const sTetromino = [
-    [width, width + 1, width * 2 + 1, width * 2 + 2],
+  const zTetromino = [
+    [0, 1, width + 1, width + 2],
     [1, width, width + 1, width * 2],
-    [width, width + 1, width * 2 + 1, width * 2 + 2],
+    [0, 1, width + 1, width + 2],
     [1, width, width + 1, width * 2],
   ];
 
   const theTetrominoes = [
-    lTetromino,
-    zTetromino,
+    jTetromino,
+    sTetromino,
     tTetromino,
     oTetromino,
     iTetromino,
-    kTetromino,
-    sTetromino,
+    lTetromino,
+    zTetromino,
   ];
 
   let currentPosition = 4;
@@ -120,6 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
       moveRight();
     } else if (e.keyCode === 40) {
       moveDown();
+    } else if (e.keyCode === 13) {
+      closePopup();
     }
   }
   document.addEventListener("keydown", control, false);
@@ -131,10 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //move down function
   function moveDown() {
-    undraw();
-    currentPosition += width;
-    draw();
-    freeze();
+    if (startGame >= 1) {
+      undraw();
+      currentPosition += width;
+      draw();
+      freeze();
+    }
   }
 
   //freeze function
@@ -161,57 +178,63 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //move the tetromino left, unless is at the edge or there is a blockage
   function moveLeft() {
-    undraw();
-    const isAtLeftEdge = current.some(
-      (index) => (currentPosition + index) % width === 0
-    );
-    if (!isAtLeftEdge) currentPosition -= 1;
-    if (
-      current.some((index) =>
-        squares[currentPosition + index].classList.contains("taken")
-      )
-    ) {
-      currentPosition += 1;
+    if (startGame >= 1) {
+      undraw();
+      const isAtLeftEdge = current.some(
+        (index) => (currentPosition + index) % width === 0
+      );
+      if (!isAtLeftEdge) currentPosition -= 1;
+      if (
+        current.some((index) =>
+          squares[currentPosition + index].classList.contains("taken")
+        )
+      ) {
+        currentPosition += 1;
+      }
+      draw();
     }
-    draw();
   }
 
   //move the Tetromino left, unless is at the edge or there is a blockage
   function moveRight() {
-    undraw();
-    const isAtRightEdge = current.some(
-      (index) => (currentPosition + index) % width === width - 1
-    );
-    if (!isAtRightEdge) currentPosition += 1;
-    if (
-      current.some((index) =>
-        squares[currentPosition + index].classList.contains("taken")
-      )
-    ) {
-      currentPosition -= 1;
+    if (startGame >= 1) {
+      undraw();
+      const isAtRightEdge = current.some(
+        (index) => (currentPosition + index) % width === width - 1
+      );
+      if (!isAtRightEdge) currentPosition += 1;
+      if (
+        current.some((index) =>
+          squares[currentPosition + index].classList.contains("taken")
+        )
+      ) {
+        currentPosition -= 1;
+      }
+      draw();
     }
-    draw();
   }
 
   //rotate the Tetromino
   function rotate() {
-    const isAtLeftEdge = current.some(
-      (index) => (currentPosition + index) % width === 0
-    );
-    const isAtRightEdge = current.some(
-      (index) => (currentPosition + index) % width === width - 1
-    );
-
-    if (!(isAtLeftEdge | isAtRightEdge)) {
-      undraw();
-      currentRotation++;
-      if (currentRotation === current.length) {
-        //if currentRotation value is greater that 4 than reset same to 0
-        currentRotation = 0;
+    if (startGame >= 1) {
+      const isAtLeftEdge = current.some(
+        (index) => (currentPosition + index) % width === 0
+      );
+      const isAtRightEdge = current.some(
+        (index) => (currentPosition + index) % width === width - 1
+      );
+  
+      if (!(isAtLeftEdge | isAtRightEdge)) {
+        undraw();
+        currentRotation++;
+        if (currentRotation === current.length) {
+          //if currentRotation value is greater that 4 than reset same to 0
+          currentRotation = 0;
+        }
+        current = theTetrominoes[random][currentRotation];
       }
-      current = theTetrominoes[random][currentRotation];
+      draw();
     }
-    draw();
   }
 
   //show up-next Tetromino in mini-container display
@@ -221,13 +244,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //the Tetrominos without rotations
   const upNextTetrominoes = [
-    [1, displayWidth + 1, displayWidth * 2 + 1, 2], //lTetromino
-    [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //zTetromino
-    [1, displayWidth, displayWidth + 1, displayWidth + 2], //tTetromino
+    [1, displayWidth + 1, displayWidth * 2, displayWidth * 2 + 1], //jTetromino
+    [0, displayWidth, displayWidth + 1, displayWidth * 2 + 1], //sTetromino
+    [displayWidth, displayWidth + 1, displayWidth + 2, displayWidth * 2 + 1], //tTetromino
     [0, 1, displayWidth, displayWidth + 1], //oTetromino
     [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1], //iTetromino
-    [0, 1, displayWidth + 1, displayWidth * 2 + 1], //kTetromino
-    [displayWidth, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 2 + 2] //sTetromino
+    [0, 1, displayWidth + 1, displayWidth * 2 + 1], //lTetromino
+    [0, 1, displayWidth + 1, displayWidth + 2] //zTetromino
   ];
 
   //display the shape in the mini-container display
@@ -251,10 +274,15 @@ document.addEventListener("DOMContentLoaded", () => {
         timerId = null;
         startCount++;
         startBtn.style.background = "radial-gradient(ellipse at center, rgba(73,155,234,1) 0%, rgba(57,172,172,1) 100%)";
+        button = "Continue";
+        startBtn.innerHTML = button;
         } else {
+          startGame++;
           draw();
           timerId = setInterval(moveDown, time);
           startBtn.style.background = "";
+          button = "Pause";
+          startBtn.innerHTML = button;
           if (startCount < 1) {
           nextRandom = Math.floor(Math.random() * theTetrominoes.length);
           displayShape();
@@ -328,6 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
     level = 1;
     levelDisplay.innerHTML = level;
     startCount = 0; 
+    startGame = 1;
     button = "Start/Pause";
     startBtn.innerHTML = button;
     startBtn.style.background = "";
