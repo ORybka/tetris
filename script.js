@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   //Popup
-  if (window.matchMedia("(min-width: 991.98px)").matches) {
+  if (window.matchMedia("(min-width: 1024px)").matches) {
     setTimeout("document.querySelector('#overlay').style.display='block'", 1000);
   };
 
