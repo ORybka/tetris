@@ -343,7 +343,7 @@ document.addEventListener("DOMContentLoaded", () => {
       button = "New Game";
       startBtn.innerHTML = button;
       startBtn.style.background = "radial-gradient(ellipse at center, rgba(230,0,54,1) 0%, rgba(189,0,44,1) 44%, rgba(143,0,33,1) 100%)";
-      startBtn.style.marginTop = "5rem";
+      startBtn.style.marginTop = "4rem";
       buttonState = 1;
     }
   }

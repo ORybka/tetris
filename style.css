@@ -18,15 +18,16 @@ body {
           flex-direction: column;
   background-image: url("background.jpg");
   background-size: cover;
+  overflow: hidden;
   margin: 0;
-  height: 100%;
+  min-height: 100%;
   width: auto;
   -ms-touch-action: manipulation;
       touch-action: manipulation;
 }
 
 body h1 {
-  font-size: 5rem;
+  font-size: 4.5rem;
   text-align: center;
   margin: 1rem auto;
 }
