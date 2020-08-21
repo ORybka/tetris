@@ -18,8 +18,10 @@ body {
           flex-direction: column;
   background-image: url("background.jpg");
   background-size: cover;
+  overflow: hidden;
   margin: 0;
-  height: 100%;
+  min-height: 100%;
+  width: 100%;
 }
 
 body h1 {
@@ -153,6 +155,12 @@ body h1 {
   margin-left: 5rem;
 }
 
+.info #gameover {
+  display: none;
+  margin: 0 auto;
+  margin-left: 5rem;
+}
+
 /*********BUTTONS*********/
 #start-button {
   font-family: "Chelsea Market", cursive, sans-serif;
@@ -165,7 +173,7 @@ body h1 {
   border-width: 2px;
   border-color: #000;
   outline: none;
-  max-width: 14rem;
+  width: 13rem;
 }
 
 #start-button:hover {
@@ -239,7 +247,7 @@ body h1 {
   grid-row: 2 / 3;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   #start-button {
     margin-top: 7rem;
   }
@@ -252,8 +260,8 @@ body h1 {
 /*********FOOTER*********/
 footer {
   background-color: rgba(0, 0, 0, 0.5);
-  height: 20vh;
-  width: 100%;
+  height: 12rem;
+  width: 100vw;
   margin-top: 2rem;
   -ms-flex-negative: 0;
       flex-shrink: 0;
@@ -312,7 +320,7 @@ footer #footer-container #footer-icons .mail:hover {
           box-shadow: 0px 6px 15px #000;
 }
 
-@media (max-width: 767.98px) {
+@media (max-width: 991.98px) {
   footer #footer-container #footer-icons {
     width: 15rem;
   }
@@ -320,7 +328,7 @@ footer #footer-container #footer-icons .mail:hover {
 
 footer #footer-container #copyright {
   display: block;
-  width: 20%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
 }

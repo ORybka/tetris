@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   //Popup
-  if (window.matchMedia("(min-width: 767.98px)").matches) {
+  if (window.matchMedia("(min-width: 991.98px)").matches) {
     setTimeout("document.querySelector('#overlay').style.display='block'", 1000);
   };
 
@@ -335,13 +335,15 @@ document.addEventListener("DOMContentLoaded", () => {
   function gameOver() {
     if (current.some((index) =>squares[currentPosition + index].classList.contains("taken"))) 
     {
-      scoreDisplay.innerHTML = score + " / Game over";
+      scoreDisplay.style.paddingTop = "2rem";
+      document.querySelector('#gameover').style.display='inline';
       clearInterval(timerId);
       timerId = null;
       document.removeEventListener("keydown", control, false);
       button = "New Game";
       startBtn.innerHTML = button;
       startBtn.style.background = "radial-gradient(ellipse at center, rgba(230,0,54,1) 0%, rgba(189,0,44,1) 44%, rgba(143,0,33,1) 100%)";
+      startBtn.style.marginTop = "13rem";
       buttonState = 1;
     }
   }
@@ -355,11 +357,14 @@ document.addEventListener("DOMContentLoaded", () => {
     scoreDisplay.innerHTML = score;
     level = 1;
     levelDisplay.innerHTML = level;
+    scoreDisplay.style.paddingTop = "0";
+    document.querySelector('#gameover').style.display='none';
     startCount = 0; 
     startGame = 1;
-    button = "Start/Pause";
+    button = "Start";
     startBtn.innerHTML = button;
     startBtn.style.background = "";
+    startBtn.style.marginTop = "15rem";
     buttonState = 0;
     document.addEventListener("keydown", control, false);
     draw();
